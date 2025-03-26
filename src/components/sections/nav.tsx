@@ -2,13 +2,9 @@ import {Link} from "react-router-dom";
 import {Button} from "../ui/button.tsx";
 import {
     NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 import {navigationMenuTriggerStyle} from "../ui/navigation-menu.tsx";
 import CartSheet from "./cartSheet.tsx";
@@ -19,15 +15,15 @@ function Nav() {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger className={"cursor-pointer"} >Item One</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <NavigationMenuLink className={"cursor-pointer"}>Link</NavigationMenuLink>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
                         <Link to={"/"}>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Sklep
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>                    <NavigationMenuItem>
+                        <Link to={"/cart"}>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                Zamówienie
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -42,7 +38,8 @@ function Nav() {
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <Link to={"https://github.com/Qbiterv/pizzeria"} target={"_blank"}>
-                            <Button className={"cursor-pointer"}>GitHub <svg xmlns="http://www.w3.org/2000/svg"
+                            <Button className={"cursor-pointer flex items-center just"}>GitHub
+                                <svg xmlns="http://www.w3.org/2000/svg"
                                                                              width="24" height="24" viewBox="0 0 24 24"
                                                                              fill="none" stroke="currentColor"
                                                                              stroke-width="2" stroke-linecap="round"
@@ -52,7 +49,8 @@ function Nav() {
                                 <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/>
                                 <path d="M11 13l9 -9"/>
                                 <path d="M15 4h5v5"/>
-                            </svg></Button>
+                            </svg>
+                            </Button>
                         </Link>
                     </NavigationMenuItem>
                 </NavigationMenuList>

@@ -1,19 +1,14 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import {Category} from "./product.tsx";
+import {Product} from "./product.tsx";
 
-interface CartItem {
-    id: number;
-    name: string;
-    price: number;
+interface CartItem extends Product {
     quantity: number;
-    image: string;
-    description: string;
-    category: Category;
 }
 
 interface CartContextType {
     cart: CartItem[];
     addToCart: (item: CartItem) => void;
+    setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -23,7 +18,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
     });
-
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -45,7 +39,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart }}>
+        <CartContext.Provider value={{ cart, addToCart, setCart }}>
             {children}
         </CartContext.Provider>
     );

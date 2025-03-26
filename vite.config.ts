@@ -9,10 +9,24 @@ export default defineConfig({
       react(), tailwindcss()
   ],
   server: {
-    cors: {
-      // the origin you will be accessing via browser
-      origin: 'http://localhost:8081',
-    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        configure: (proxy, options) => {
+          proxy.on('error', (err, _req, _res) => {
+            console.log('error', err);
+          });
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            console.log('Request sent to target:', req.method, req.url);
+          });
+          proxy.on('proxyRes', (proxyRes, req, _res) => {
+            console.log('Response received from target:', proxyRes.statusCode, req.url);
+          });
+        },
+      }
+    }
   },
   build: {
     // generate .vite/manifest.json in outDir
