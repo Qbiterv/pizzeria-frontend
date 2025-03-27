@@ -28,7 +28,7 @@ function Cart() {
                                 price={product.price}
                                 imageUrl={product.imageUrl}
                                 quantity={product.quantity}
-                                category={product.category}
+                                category={""}
                                 removeProduct={removeProduct}
                                 updateQuantity={updateQuantity}
                             />
@@ -41,7 +41,7 @@ function Cart() {
                 <section>
                     <h3 className="text-2xl font-bold">Podsumowanie zamówienia</h3>
                     <div className="flex justify-between items-center">
-                        <p className="text-lg font-semibold">Razem: {cart.reduce((acc, product) => acc + product.price * product.quantity, 0)} zł</p>
+                        <p className="text-lg font-semibold">Razem: {cart.reduce((acc, product) => acc + product.price * product.quantity, 0).toFixed(2)} zł</p>
                         <OrderComplete></OrderComplete>
                     </div>
                 </section>

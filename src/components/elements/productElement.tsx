@@ -19,7 +19,7 @@ function ProductElement({ id, name, description, price, imageUrl, quantity, remo
 
     return (
         <div className="w-90 rounded-2xl border-4 p-4 flex items-center content-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <img className="w-24 h-24 rounded-full mr-4 drop-shadow-xl" src={imageUrl ? imageUrl : test} alt={"Zdjęcie " + imageUrl} />
+            <img className="w-24 h-24 rounded-full mr-4" src={imageUrl ? imageUrl : test} alt={"Zdjęcie " + imageUrl} />
             <div className="flex items-center justify-between w-full p-2">
                 <div>
                     <h4 className="text-xl font-bold">{name}</h4>
@@ -27,13 +27,12 @@ function ProductElement({ id, name, description, price, imageUrl, quantity, remo
                     <p className="text-sm text-gray-500">Zestawy</p>
                 </div>
                 <div className="text-right">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col items-center">
                         <div className="flex justify-center content-center items-center">
-                        <p>Qty&nbsp;</p>
                         <Input min="1" max="100" type="number" value={quantity} onChange={handleQuantityChange} className="w-16 text-center" />
                         </div>
-                            <div className="flex items-center justify-center content-center gap-2 m-auto">
-                            <p className="text-lg font-semibold">{price}&nbsp;zł</p>
+                        <div className="flex items-center justify-center content-center gap-2 m-auto">
+                            <p className="text-lg font-semibold">{price.toFixed(2)}&nbsp;zł</p>
                             <Button variant="destructive" className="cursor-pointer mt-2 hover:bg-red-600" onClick={() => removeProduct(id)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"

@@ -9,6 +9,7 @@ import axios, {AxiosResponse} from "axios";
 import Cart from "./routes/cart.tsx";
 import Order from "./routes/order.tsx";
 import ProductPage from './routes/product.tsx';
+import { Toaster } from '@/components/ui/sonner.tsx';
 
 function App() {
     const [products, setProducts] = useState<Product[] | null>(null);
@@ -18,10 +19,6 @@ function App() {
         axios.get("/api/products")
             .then((response: AxiosResponse<Product[]>) => {
                 const data: Product[] = response.data;
-                // setTimeout(() => {
-                //     setProducts(data);
-                //     setLoading(false);
-                // }, 0);
                 setProducts(data);
                 setLoading(false);
             })
@@ -49,9 +46,10 @@ function App() {
                     <Route path={"/"} element={<Main products={products} loading={loading} />} />
                     <Route path={"/cart"} element={<Cart />} />
                     <Route path={"/order/:id"} element={<Order></Order>} />
-                    <Route path={"/product/:id"} element={<ProductPage />} />
+                    <Route path={"/product/:id"} element={<ProductPage products={products} />} />
                 </Routes>
                 <Footer />
+                <Toaster />
             </BrowserRouter>
         </>
     )

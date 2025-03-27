@@ -16,7 +16,7 @@ function Nav() {
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <Link to={"/"}>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink href={"/"} className={navigationMenuTriggerStyle()}>
                                 Sklep
                             </NavigationMenuLink>
                         </Link>

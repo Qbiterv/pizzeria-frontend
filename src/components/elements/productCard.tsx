@@ -12,7 +12,7 @@ function ProductCard({ id, name, description, price, imageUrl }: Product) {
     const { addToCart } = useCart();
 
     const handleAddToCart = () => {
-        addToCart({ id, name, price, quantity, description});
+        addToCart({ id, name, price, quantity, description, imageUrl});
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 500); // Remove highlight after 2 seconds
     };
@@ -27,7 +27,7 @@ function ProductCard({ id, name, description, price, imageUrl }: Product) {
                 <p className="text-center font-light overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
                     {description.length > 30 ? description.substring(0, 30) + '...' : description}
                 </p>
-                <p className="text-center font-semibold mt-2">${price}</p>
+                <p className="text-center font-semibold mt-2">{price.toFixed(2)} zł</p>
                 <p className="text-center text-sm text-gray-500">{"test"}</p>
                 <div className="mt-auto flex items-center gap-2">
                     <Input

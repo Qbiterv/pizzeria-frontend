@@ -34,8 +34,8 @@ function CartElement({ id, name, description, category, price, imageUrl, quantit
             <div className={"w-full flex flex-col"}>
                 <div className="flex flex-col w-full justify-center items-end pr-10">
                     <div className="flex justify-center content-center items-center gap-1.25">
-                        <p className="text-lg font-semibold">{price * quantity}&nbsp;zł</p>
-                        <p className={"font-thin italic text-xs"}>({quantity}x <span>{price} zł</span>)</p>
+                        <p className="text-lg font-semibold">{(price * quantity).toFixed(2)}&nbsp;zł</p>
+                        <p className={"font-thin italic text-xs"}>({quantity}x <span>{price.toFixed(2)} zł</span>)</p>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className={"flex justify-center content-center items-center gap-2.5"}>

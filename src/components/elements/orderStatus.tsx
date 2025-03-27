@@ -7,7 +7,7 @@ import axios, {AxiosResponse} from "axios";
 import {StatusResponse} from "../../utils/status.tsx";
 
 
-function OrderStatus({orderId}: {orderId: number}) {
+function OrderStatus({orderId, finalized}: {orderId: number, finalized: boolean}) {
     const [steps, setSteps] = useState<[]>([]);
     const [step, setStep] = useState<number>(0);
 
@@ -32,6 +32,10 @@ function OrderStatus({orderId}: {orderId: number}) {
             })
         }
 
+        if(finalized || step == -1) {
+            return setStep(-1);
+        }
+
         const interval = setInterval(() => {
             getStep();
         }, 15000);
@@ -43,12 +47,16 @@ function OrderStatus({orderId}: {orderId: number}) {
 
     return (
         <Box className={"transform transition duration-300"} sx={{ width: '100%' }}>
-            <Stepper className={"transform transition duration-300"} activeStep={step+1} alternativeLabel>
-                {steps.map((label) => (
-                    <Step className={"transform transition duration-300"} key={label}>
-                        <StepLabel className={"transform transition duration-300"}>{label}</StepLabel>
-                    </Step>
-                ))}
+            <Stepper className={"transform transition duration-300 flex justify-center"} activeStep={step+1} alternativeLabel>
+                {step == -1 ? (
+                    <p className={"text-3xl font-bold text-red-500"}>ZAMÓWIENIE ANULOWANE</p>
+                ) : (
+                    steps.map((label) => (
+                        <Step className={"transform transition duration-300"} key={label}>
+                            <StepLabel className={"transform transition duration-300"}>{label}</StepLabel>
+                        </Step>
+                    ))
+                )}
             </Stepper>
         </Box>
     );

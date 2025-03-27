@@ -27,19 +27,6 @@ function Order() {
             setLoading(false);
         })
 
-        // axios.get("/api/products/" + id).then((res: AxiosResponse<ProductsResponse>) => {
-        //     if (res.status == 204) {
-        //         setProducts(null);
-        //         return setLoading({products: false});
-        //     }
-        //
-        //     const data: ProductsResponse = res.data;
-        //     setProducts(data);
-        //     setLoading({products: false});
-        // }).catch(error => {
-        //     console.error("Error message:", error.message);
-        //     setLoading({products: false});
-        // })
     }, [id]);
 
     return (
@@ -56,10 +43,10 @@ function Order() {
                         <section className={"flex flex-wrap justify-center gap-5 content-center items-centers"}>
                             <OrderElement id={order.id} name={order.name} surname={order.surname} email={order.email} phone={order.phone} address={order.address} orderDate={order.orderDate} finalized={order.finalized} />
                             <OrderProducts orderId={order.id} />
-                            <OrderStatus orderId={order.id} />
+                            <OrderStatus orderId={order.id} finalized={order.finalized} />
                         </section>
                         <hr className={"m-5"}/>
-                        <OrderControls orderId={order.id} />
+                        {!order.finalized && <OrderControls orderId={order.id} finalized={order.finalized} />}
                     </>
                 )
             )}
